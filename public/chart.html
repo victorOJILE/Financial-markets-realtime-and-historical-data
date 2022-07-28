@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Chart</title>
+	<link rel="stylesheet" href="design.css">
+</head>
+<body>
+	<div class="chartMainDiv">
+		<div class="toolsDiv">
+			<div class="tfDiv">
+				<div>
+					<span class="curPspan">
+						<span id="curP">XAUUSD</span>
+						<span id="tf">30</span>
+					</span>
+					<span class="visible">
+						<button class="tfBtn">5M</button>
+						<button class="tfBtn">15M</button>
+						<button class="tfBtn">30M</button>
+						<button class="tfBtn">1H</button>
+						<button class="tfBtn">4H</button>
+						<button class="tfBtn">D1</button>
+						<button class="tfBtn">W1</button></span>
+					<span class="loading">
+							<i class="fa fa-circle-o-notch fa-spin"></i><span style="margin-left: 5px;">Loading chart data</span>
+					</span>
+				</div>
+				<div class="highest-price"><span id="open-price">0.00</span> <span id="highest-price">0.00</span> <span
+						id="lowest-price">0.00</span> <span id="current-price">0.00</span></div>
+				<button class="extra-info" id="extra-info" onclick="showContMenu()">&vellip;</button>
+				
+			</div>
+			<div class="candle-overflown-div">
+                <div class="scrollDiv">
+                    <div>
+                        <button class="toolBtn active-toolBtn" id="cursor" title="Cursor">
+                            <svg style="transform: rotate(-30deg)" viewbox="-10 10 70 70">
+                                <polyline points="25 10, -2 60, 13 55, 13 90, 20 90, 21 55, 35 60, 18 20"
+                                    style="stroke: none; stroke-width: 0" fill="rgb(212, 212, 212)" />
+                            </svg></button>
+                        <button class="toolBtn" id="crosshair" title="Crosshair">
+                            <svg viewbox="-2 -2 10 10">
+                                <line x1="0" y1="40%" y2="40%" x2="60%" stroke="rgb(212, 212, 212)" stroke-width="1" />
+                                <line x1="30%" y1="5%" y2="75%" x2="30%" stroke="rgb(212, 212, 212)" stroke-width="1" />
+                                <circle cx="30%" cy="40%" r="0.8" stroke="rgb(212, 212, 212)" stroke-width="0.5" fill="black" />
+                            </svg></button>
+                        <button class="toolBtn" id="trendline" title="Draw trendline">
+                            <svg viewbox="-2 -2.5 10 10">
+                                <line x1="0" y1="0" y2="60%" x2="60%" stroke="rgb(212, 212, 212)" stroke-width="1" />
+                            </svg></button>
+                        <button class="toolBtn" id="horiz" title="Draw horizontal line">
+                            <svg viewbox="-2 -2 10 10">
+                                <line x1="0" y1="40%" y2="40%" x2="60%" stroke="rgb(212, 212, 212)" stroke-width="1" />
+                            </svg></button>
+                        <button class="toolBtn" id="vertical" title="Draw vertical line">
+                            <svg viewbox="-2 -2 10 10">
+                                <line x1="30%" y1="0%" y2="80%" x2="30%" stroke="rgb(212, 212, 212)" stroke-width="1" />
+                            </svg></button>
+                        <button class="toolBtn" id="rectangle" title="Draw rectangle">
+                            <svg viewbox="-2 -2.5 10 10">
+                                <rect x="0" y="0" width="60%" height="60%" stroke="rgb(212, 212, 212)" stroke-width="1"
+                                    fill="rgb(212, 212, 212)" />
+                            </svg></button>
+                        <button class="toolBtn" id="circle" title="Draw circle">
+							<svg viewbox="-2 -2.5 10 10">
+                                <circle cx="30%" cy="30%" r="3" stroke="rgb(212, 212, 212)" stroke-width="1"
+                                    fill="rgb(212, 212, 212)" />
+                            </svg></button>
+                        <button class="toolBtn" id="circle" onclick="openFullScreen()" title="Activate Full Screen Mode">
+                            <i class="fa fa-expand"></i></button>
+                        <button class="toolBtn" id="circle" title="Deactivate Full Screen Mode" onclick="closeFullScreen()">
+                            <i class="fa fa-compress"></i></button>
+                    </div>
+                </div>
+				<div id="overflown-div"></div>
+				<small id="quotes">Gold Spot | Australian Dollar</small>
+			</div>
+		</div>
+	</div>
+	<div class="title"></div>
+	<div class="context-menu" id="context-menu">
+		<div class="objects">
+			<div>Objects</div>
+			<div><ol id="objects-list"></ol></div>
+		</div>
+		<div class="other-opt">
+			<div>
+				<div><button class="other-opt-button">Edit</button></div>
+				<div><button class="other-opt-button" id="remove-object">Remove</button></div>
+			</div>
+			<div>
+				<button id="close-btn1" class="hide other-opt-button">Exit</button>
+				<button id="close-btn2" class="hide2">&#10006;</button>
+			</div>
+		</div>
+	</div>
+	<div class="cover-div" id="cover-div"></div>
+</body>
+<script>
+	if (window.innerWidth < 220) {
+		let chartMainDiv = document.getElementsByClassName('chartMainDiv')[0];
+		chartMainDiv.style.display = 'none';
+	} else {
+	let svgWidth = () => (window.outerWidth < 800)? 800: window.outerWidth;
+	document.getElementById('overflown-div').innerHTML = `<div style="width: 100%;">
+						<svg id="chart" height="100%" width="${svgWidth()}" ></svg>
+					</div>
+                    <svg style="background-color:black; position: absolute; right: 0; border-left: 1px solid white;" id="price-div" width="3.5rem" height="100%"></svg>
+                `;
+		let script = document.createElement('script');
+		script.src = 'javascript.js';
+		document.documentElement.appendChild(script);
+	}
+</script>
+
+</html>
