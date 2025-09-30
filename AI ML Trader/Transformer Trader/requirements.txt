@@ -1,0 +1,7 @@
+MetaTrader5
+numpy
+pandas
+torch
+sklearn
+ta-lib
+pandas-ta

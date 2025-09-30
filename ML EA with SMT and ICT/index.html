@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Financial markets chart</title>
-	<link rel="stylesheet" href="design.css">
+	<link rel="stylesheet" href="../design.css">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
 					<button>W1</button>
 				</span>
 				<span class="loading">
-					<svg class="fa-spin" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
+					<svg class="fa-spi" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg">
 						<path d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z" />
 					</svg>
 				</span>
@@ -78,6 +78,16 @@
 	</div>
 	<div class="title"></div>
 </body>
+<script>
+	let candles;
+	window.onerror =(a,b,c) => console.error(a,b,c)
+</script>
+<script src="utils.js"></script>
+<script src="smt.js"></script>
+<script src="dec_tree.js"></script>
+<script src="poly_reg.js"></script>
+<script src="index.js"></script>
+
 
 <script>
 	let iframe = document.getElementById('frame');
@@ -100,14 +110,14 @@
 	</head>
 	
 	<body>
-		<div style="overflow: auto;height: 100%"><canvas id="canvas" width="${Math.max(80*10, window.innerWidth)}" height="${iframe.clientHeight}" style="background-color: black"></canvas></div><canvas id="canvas2" style="background-color: black; position: absolute; top:0 ; right: 0; border-left: 1px solid white;" width="60" height="${iframe.clientHeight}"></canvas>
+		<div style="overflow: auto;height: 100%"><canvas id="canvas" width="${Math.max(80*20, window.innerWidth)}" height="${iframe.clientHeight}" style="background-color: black"></canvas></div><canvas id="canvas2" style="background-color: black; position: absolute; top:0 ; right: 0; border-left: 1px solid white;" width="60" height="${iframe.clientHeight}"></canvas>
 	</body>
 	
 	</html>`;
 
 	iframe.addEventListener('load', function() {
 		let script = document.createElement('script');
-		script.src = 'main.js';
+		script.src = '../chart.js';
 		document.body.append(script)
 	});
 </script>

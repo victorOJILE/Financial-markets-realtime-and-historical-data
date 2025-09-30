@@ -1,0 +1,1 @@
+pip install watchdog pandas scikit-learn joblib
